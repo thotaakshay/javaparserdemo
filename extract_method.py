@@ -3,7 +3,7 @@ import subprocess
 def extract_method(java_file):
     # On Windows, use ';' in classpath. On Mac/Linux, use ':'
     cmd = [
-        'java', '-cp', '.;javaparser-core-3.25.4.jar',
+        'java', '-cp', '.:javaparser-core-3.25.4.jar',
         'ExtractMethod', java_file
     ]
     result = subprocess.run(
