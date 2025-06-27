@@ -1,7 +1,8 @@
 import com.github.javaparser.*;
-        import com.github.javaparser.ast.*;
-        import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.*;
+import com.github.javaparser.ast.body.MethodDeclaration;
 import java.io.FileInputStream;
+
 public class ExtractMethod {
     public static void main(String[] args) throws Exception {
         if (args.length < 1) {

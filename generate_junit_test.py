@@ -1,9 +1,10 @@
 
-# openai.api_key = "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"  # Replace with your API key
+import os
 import openai
 from extract_method import extract_method
 
-openai.api_key = "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"  # Replace with your API key
+# Read the API key from the environment to avoid hard coding secrets
+openai.api_key = os.getenv("OPENAI_API_KEY", "")
 
 def generate_junit_test(java_method_code):
     prompt = f"""
