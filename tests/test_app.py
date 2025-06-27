@@ -20,6 +20,23 @@ class TestApp(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json(), {'junit_test': 'junit code'})
 
+    @patch('app.generate_junit_test')
+    def test_generate_tests_endpoint(self, mock_generate):
+        from app import app
+        mock_generate.return_value = 'junit code'
+        payload = {
+            'files': [
+                {'name': 'Example.java', 'content': 'class Example {}'}
+            ]
+        }
+        response = self.client.post('/generate-tests', json=payload)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.headers['Content-Type'], 'application/zip')
+        import io, zipfile
+        zf = zipfile.ZipFile(io.BytesIO(response.data))
+        self.assertIn('ExampleTest.java', zf.namelist())
+        self.assertEqual(zf.read('ExampleTest.java').decode(), 'junit code')
+
 
 if __name__ == '__main__':
     unittest.main()
