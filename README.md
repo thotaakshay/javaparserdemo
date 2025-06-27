@@ -12,6 +12,10 @@ Install Python dependencies:
 pip install -r requirements.txt
 ```
 
+The backend optionally integrates with **LangChain** and **LangSmith** for LLM
+invocation and tracing. If these packages are unavailable, the server falls
+back to using the raw OpenAI client.
+
 A Java runtime is required for the `ExtractMethod` class. Make sure the
 `javaparser-core-3.25.4.jar` is present in the repository.
 
